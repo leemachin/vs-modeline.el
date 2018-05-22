@@ -26,3 +26,17 @@ A mode-line that more-or-less feels like the status bar in [VS Code](https://cod
 (require 'vs-modeline)
 (vs-modeline-mode t)
 ```
+
+## Customisation
+
+What with this being a rip-off of what VS Code does the main structure of the mode-line is quite opinionated and not very configurable. However, the following things will eventually be open for customisation when I'm happy with what I've got for myself:
+
+- colours
+- text/fonts
+- special case behaviour for certain modes (e.g. flycheck, evil)
+- anything else I've missed or needs tweaking to fit in nicely
+
+
+## Contributing
+
+Always welcome if you feel like it :) please add a screenshot or something to the PR though, so it's easy to visualise the change.
