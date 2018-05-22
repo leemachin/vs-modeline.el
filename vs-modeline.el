@@ -62,7 +62,7 @@
     ;; show the current major mode in use (use obsolete format because trailing spaces nice it up)
     (:propertize " %m " face (:background "lightblue"))
     ;; show the line number and column number (no 'All', 'Top', 'Bottom', etc.)
-    (:propertize " %l:%c " face (:background "black" :foreground "white" :weight light))))
+    (:propertize " Ln %l Col %c " face (:background "black" :foreground "white" :weight light))))
 
 ;;;###autoload
 (define-minor-mode vs-modeline-mode
