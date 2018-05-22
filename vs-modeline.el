@@ -1,10 +1,10 @@
-;;; vs-modeline.el --- a Visual Studio Code style modeline for Emacs
+;;; vs-modeline.el --- a Visual Studio Code style mode-line for Emacs
 
 ;; Copyright (c) 2018 Lee Machin
 
 ;; Author: Lee Machin <me@mrl.ee>
 ;; URL: https://github.com/leemachin/vs-modeline.el
-;; Keywords: modeline
+;; Keywords: modeline mode-line
 ;; Version: 1.0.0
 
 ;; This file is not part of GNU Emacs.
@@ -24,7 +24,7 @@
 
 ;;; Commentary:
 
-;; A modeline that more or less looks and feels like the status bar in
+;; A mode-line that more or less looks and feels like the status bar in
 ;; Visual Studio Code.
 
 ;;; Usage:
@@ -37,6 +37,23 @@
 
 ;;; Code:
 
+(defgroup vs-modline nil
+  "Visual Studio Code style mode-line"
+  :group 'mode-line)
+
+(defun vs-modeline--format ()
+  `(
+;; todo: implementamation
+    ))
+
+(define-minor-mode vs-modeline-mode
+  "toggle vs-modline on or off"
+  :group 'vs-modeline
+  :global t
+  (setq-default mode-line-format
+                (if vs-modeline-mode
+                    `("%e" ,@(vs-modeline--format))
+                  mode-line-format)))
 
 ;;;###autoload
 
