@@ -77,4 +77,3 @@
 (provide 'vs-modeline)
 
 ;;; vs-modeline.el ends here
-
