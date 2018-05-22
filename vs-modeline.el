@@ -46,7 +46,10 @@
   `(
     ;; add a noticeable red block that says 'READ ONLY' when the file's, er, read only
     (:eval
-     (when (eql buffer-read-only t)
+    ;; show the current branch and VCS in use, if there is one
+    (:propertize (vc-mode vc-mode) face (:weight normal))
+    " "
+    (when (eql buffer-read-only t)
        ;; propertize adds metadata to text, so you can add colours and formatting, amongst other things
        (propertize " READ ONLY " 'face
                    '(:background "color-88" :foreground "white" :weight bold))))
@@ -57,10 +60,7 @@
                      '(:background "red" :foreground "white" :weight bold)
                    '(:background "green" :foreground "black" :weight bold))))
     ;; show the current major mode in use (use obsolete format because trailing spaces nice it up)
-    (:propertize " %m " face (:background "grey"))
-    ;; show the current branch and VCS in use, if there is one
-    (:propertize (vc-mode vc-mode) face (:weight normal))
-    " "
+    (:propertize " %m " face (:background "lightblue"))
     ;; show the line number and column number (no 'All', 'Top', 'Bottom', etc.)
     (:propertize " %l:%c " face (:background "black" :foreground "white" :weight light))))
 
