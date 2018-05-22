@@ -46,6 +46,7 @@
 ;; todo: implementamation
     ))
 
+;;;###autoload
 (define-minor-mode vs-modeline-mode
   "toggle vs-modline on or off"
   :group 'vs-modeline
@@ -54,8 +55,6 @@
                 (if vs-modeline-mode
                     `("%e" ,@(vs-modeline--format))
                   mode-line-format)))
-
-;;;###autoload
 
 (provide 'vs-modeline)
 
