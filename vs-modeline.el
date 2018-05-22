@@ -37,7 +37,7 @@
 
 ;;; Code:
 
-(defgroup vs-modline nil
+(defgroup vs-modeline nil
   "Visual Studio Code style mode-line"
   :group 'mode-line)
 
