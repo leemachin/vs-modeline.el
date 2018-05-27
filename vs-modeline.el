@@ -44,25 +44,19 @@
 (defun vs-modeline--format ()
   "Formatting for vs-modeline."
   `(
-    ;; add a noticeable red block that says 'READ ONLY' when the file's, er, read only
     (:eval
-    ;; show the current branch and VCS in use, if there is one
     (:propertize (vc-mode vc-mode) face (:weight normal))
     " "
     (when (eql buffer-read-only t)
-       ;; propertize adds metadata to text, so you can add colours and formatting, amongst other things
-       (propertize " READ ONLY " 'face
+       (propertize " RO " 'face
                    '(:background "color-88" :foreground "white" :weight bold))))
-    ;; show the buffer filename, with a green background when unmodified/saved and a red one when modified
     (:eval
      (propertize " %b " 'face
                  (if (buffer-modified-p)
                      '(:background "red" :foreground "white" :weight bold)
-                   '(:background "green" :foreground "black" :weight bold))))
-    ;; show the current major mode in use (use obsolete format because trailing spaces nice it up)
-    (:propertize " %m " face (:background "lightblue"))
-    ;; show the line number and column number (no 'All', 'Top', 'Bottom', etc.)
-    (:propertize " Ln %l Col %c " face (:background "black" :foreground "white" :weight light))))
+                   '(:background "#2F80ED" :foreground "white" :weight bold))))
+    (:propertize " %m " face '(:background "#2F80ED" :foreground "white"))
+    (:propertize " Ln %l Col %c " face (:background "#2F80ED" :foreground "white" :weight light))))
 
 ;;;###autoload
 (define-minor-mode vs-modeline-mode
