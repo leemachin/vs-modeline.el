@@ -44,29 +44,36 @@
 (defun vs-modeline--format ()
   "Formatting for vs-modeline."
   `(
-    (:eval
-    (:propertize (vc-mode vc-mode) face (:weight normal))
+    (vc-mode vc-mode)
     " "
-    (when (eql buffer-read-only t)
+    (:eval
+     (when (eql buffer-read-only t)
        (propertize " RO " 'face
-                   '(:background "color-88" :foreground "white" :weight bold))))
+                   '(:background "color-88" :weight bold))))
     (:eval
      (propertize " %b " 'face
                  (if (buffer-modified-p)
-                     '(:background "red" :foreground "white" :weight bold)
-                   '(:background "#2F80ED" :foreground "white" :weight bold))))
-    (:propertize " %m " face '(:background "#2F80ED" :foreground "white"))
-    (:propertize " Ln %l Col %c " face (:background "#2F80ED" :foreground "white" :weight light))))
+                     '(:background "red" :weight bold)
+                   '(:foreground "white" :weight bold))))
+
+    " %m "
+    " Ln %l Col %c "))
+
+;; TODO: define custom faces for these
+(defun vs-modeline--apply-faces ()
+  (set-face-attribute 'mode-line nil :background "#2F80ED" :foreground "white" :font "Helvetica Neue-15")
+  (set-face-attribute 'mode-line-inactive nil :background "#c4d1e3"))
 
 ;;;###autoload
 (define-minor-mode vs-modeline-mode
   "toggle vs-modline on or off"
   :group 'vs-modeline
   :global t
-  (setq-default mode-line-format
-                (if vs-modeline-mode
-                    `("%e" ,@(vs-modeline--format))
-                  mode-line-format)))
+  (if vs-modeline-mode
+      (progn
+        (setq-default mode-line-format `("%e" ,@(vs-modeline--format)))
+        (add-hook 'after-init-hook 'vs-modeline--apply-faces))
+    (setq-default mode-line-format mode-line-format)))
 
 (provide 'vs-modeline)
 
